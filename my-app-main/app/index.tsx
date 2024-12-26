@@ -1,30 +1,38 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function HomePage() {
   const router = useRouter();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome</Text>
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => router.push('/LoginPage')}
+      <LinearGradient
+        colors={['#4a90e2', '#2b5876']}
+        style={styles.gradient}
       >
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
+        <View style={styles.content}>
+          <Text style={styles.logo}>ShareIT</Text>
+          <Text style={styles.subtitle}>Connect. Share. Thrive.</Text>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => router.push('/Sign_In')}
-      >
-        <Text style={styles.buttonText}>SignUp</Text>
-      </TouchableOpacity>
-    
-    
-     
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => router.push('/LoginPage')}
+            >
+              <Text style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.button, styles.signUpButton]}
+              onPress={() => router.push('/Sign_In')}
+            >
+              <Text style={[styles.buttonText, styles.signUpText]}>Sign Up</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </LinearGradient>
     </View>
   );
 }
@@ -32,28 +40,64 @@ export default function HomePage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  gradient: {
+    flex: 1,
+    width: '100%',
+  },
+  content: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    padding: 20,
   },
-  title: {
-    fontSize: 32,
+  logo: {
+    fontSize: 48,
     fontWeight: 'bold',
-    marginBottom: 40,
-    color: '#333',
+    color: '#ffffff',
+    marginBottom: 10,
+    textShadowColor: 'rgba(0, 0, 0, 0.3)',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 5,
+  },
+  subtitle: {
+    fontSize: 18,
+    color: '#ffffff',
+    marginBottom: 50,
+    opacity: 0.9,
+  },
+  buttonContainer: {
+    width: '100%',
+    maxWidth: 300,
+    gap: 20,
   },
   button: {
-    width: '80%',
-    height: 50,
-    backgroundColor: '#007BFF',
-    borderRadius: 10,
+    width: '100%',
+    height: 54,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderRadius: 27,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  signUpButton: {
+    backgroundColor: '#ffffff',
   },
   buttonText: {
-    color: '#fff',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '600',
+    color: '#ffffff',
+  },
+  signUpText: {
+    color: '#2b5876',
   },
 });
